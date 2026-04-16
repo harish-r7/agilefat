@@ -11,9 +11,11 @@ spec:
     metadata:
       labels:
         app: leave-system
-    spec:
+     spec:
       containers:
       - name: leave-container
         image: harishr7/leave-app:latest
+        imagePullPolicy: IfNotPresent  # <--- Add this line
+
         ports:
         - containerPort: 8080

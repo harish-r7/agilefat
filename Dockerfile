@@ -1,14 +1,15 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:21-jre-slim
+# Use Amazon Corretto or Eclipse Temurin for a stable JDK 21 image
+FROM curlimages/curl:latest AS download
+FROM amazoncorretto:21-al2023-headless
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the JAR file from the target directory
-COPY target/leave-management-system-1.0-SNAPSHOT.jar app.jar
+# Copy the jar file from the target folder
+COPY target/*.jar app.jar
 
-# Expose the port the app runs on
-EXPOSE 8082
+# Expose port
+EXPOSE 8080
 
-# Run the JAR file
-CMD ["java", "-jar", "app.jar"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

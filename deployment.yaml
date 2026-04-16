@@ -1,22 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: leave-management-deployment
+  name: leave-app  # <--- This must match your rollout command
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: leave-management
+      app: leave-system
   template:
     metadata:
       labels:
-        app: leave-management
+        app: leave-system
     spec:
       containers:
-      - name: leave-management
-        image: your-dockerhub-username/leave-management-system:latest  # Replace with your Docker Hub image
+      - name: leave-container
+        image: harishr7/leave-app:latest
         ports:
-        - containerPort: 8082
-        env:
-        - name: PORT
-          value: "8082"
+        - containerPort: 8080

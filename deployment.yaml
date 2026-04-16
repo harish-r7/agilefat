@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: leave-app  # <--- This must match your rollout command
+  name: leave-app
 spec:
   replicas: 1
   selector:
@@ -11,11 +11,10 @@ spec:
     metadata:
       labels:
         app: leave-system
-     spec:
+    spec:           # This line must align with metadata above
       containers:
       - name: leave-container
         image: harishr7/leave-app:latest
-        imagePullPolicy: IfNotPresent  # <--- Add this line
-
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
